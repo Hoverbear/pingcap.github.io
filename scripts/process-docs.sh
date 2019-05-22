@@ -10,10 +10,7 @@ replace_dist_html_link() {
   if [ -d "$doc_tmp_path" ];then
     for html in "$doc_tmp_path"/*
     do
-      # echo "$html"
-      # [ "$html" = "." -o "$html" = ".." ] && continue
       if [ -d "$html" ];then
-        # echo "process sub dir: " $html
         replace_dist_html_link "$html" $repo_name
       elif [[ ! -d "$html" ]] && echo "$html" | grep -E '\.html$' > /dev/null;then
         set +e
@@ -45,7 +42,6 @@ replace_dist_html_link "dist/success-stories" blog
 
 # replace_dist_html_link "dist/meetup" meetup
 # replace_dist_html_link "dist/weekly" weekly
-
 
 parent_dir="`echo $(pwd) | sed 's;/scripts;;g'`/dist"
 copy_images_from_media_to_dist() {
