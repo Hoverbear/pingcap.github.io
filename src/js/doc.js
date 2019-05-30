@@ -301,4 +301,27 @@ $(document).ready(function() {
         break
     }
   })
+
+  // hide dropdown Menu if user clicks other divs when the status of dropdown menu is open
+  $('.doc').click(function(e) {
+    if (
+      e.target.id != 'dropdownMenuButton' &&
+      e.target.id != 'dropdown-menu-items' &&
+      e.target.classList.value != 'dropdown-item'
+    ) {
+      if (!$('.dropdown-menu').hasClass('visibility-hide')) {
+        $('.dropdown-menu').slideToggle('fast')
+        $('.dropdown-menu').addClass('visibility-hide')
+      }
+    }
+  })
+
+  // handles docs version switch
+  $('.version-switcher').click(function() {
+    if ($('.dropdown-menu').hasClass('visibility-hide')) {
+      $('.dropdown-menu').removeClass('visibility-hide')
+    } else {
+      $('.dropdown-menu').slideToggle('fast')
+    }
+  })
 })
