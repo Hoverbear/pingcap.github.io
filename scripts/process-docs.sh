@@ -15,14 +15,17 @@ replace_dist_html_link() {
       if [ -d "$html" ];then
         # echo "process sub dir: " $html
         replace_dist_html_link "$html" $repo_name
-      fi
-      if [[ ! -d "$html" ]] && echo "$html" | grep -E '\.html$' > /dev/null;then
-        # using double quote to variable, using [\"] to
-        # sed -i -r 's;<img\s*src="([\.\/]*)media/(.*)"\s*(alt=".*?")?\s*/?>;<img src="/images/'"$repo_name"'/\2" \3 />;g' $html
-        # echo "start convert the href of a tag in html: " $html
-        python scripts/convert_html.py $html $repo_name
-        # echo "convert done"
-        # cat _tmp_out1 > $doc_tmp_path/$html
+      elif [[ ! -d "$html" ]] && echo "$html" | grep -E '\.html$' > /dev/null;then
+        set +e
+        echo $html
+        if grep -E 'href=\"\S+\.md' $html | grep -E -v 'href=\"http' > /dev/null;then
+          echo "process..."
+          python scripts/convert_html.py $html $repo_name
+        elif grep -E 'img src=\"[\.\/]*media\/' $html > /dev/null;then
+          echo "process..."
+          python scripts/convert_html.py $html $repo_name
+        fi
+        set -e
       fi
     done
   fi
@@ -33,15 +36,15 @@ en_tmp_docs_path="dist/docs"
 replace_dist_html_link "$cn_tmp_docs_path" docs-cn
 replace_dist_html_link "$en_tmp_docs_path" docs
 
-cn_tmp_blogs_path="dist/blog-cn"
+# cn_tmp_blogs_path="dist/blog-cn"
 en_tmp_blogs_path="dist/blog"
-replace_dist_html_link "$cn_tmp_blogs_path" blog-cn
-replace_dist_html_link "dist/cases-cn" blog-cn
+# replace_dist_html_link "$cn_tmp_blogs_path" blog-cn
+# replace_dist_html_link "dist/cases-cn" blog-cn
 replace_dist_html_link "$en_tmp_blogs_path" blog
 replace_dist_html_link "dist/success-stories" blog
 
-replace_dist_html_link "dist/meetup" meetup
-replace_dist_html_link "dist/weekly" weekly
+# replace_dist_html_link "dist/meetup" meetup
+# replace_dist_html_link "dist/weekly" weekly
 
 
 parent_dir="`echo $(pwd) | sed 's;/scripts;;g'`/dist"
@@ -56,7 +59,7 @@ copy_images_from_media_to_dist() {
 # mv all content in media to dist/images
 copy_images_from_media_to_dist docs
 copy_images_from_media_to_dist docs-cn
-copy_images_from_media_to_dist blog-cn
+# copy_images_from_media_to_dist blog-cn
 copy_images_from_media_to_dist blog
-copy_images_from_media_to_dist weekly
-copy_images_from_media_to_dist meetup
+# copy_images_from_media_to_dist weekly
+# copy_images_from_media_to_dist meetup
