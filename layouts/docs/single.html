@@ -49,6 +49,9 @@
                 {{- end -}}
 
                 {{ $doesnot_exist_ver := ($.Scratch.Get "doesnot_exist_ver") }}
+
+                {{ printf "%#v" $doesnot_exist_ver }}
+                
               {{- .Content -}}
             </div>
             <!-- <div class="article-toc"></div> -->
