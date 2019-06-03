@@ -41,7 +41,9 @@
                 {{ $.Scratch.Set "doesnot_exist_ver" (slice "") }}
 
                 {{- range $idx, $i := $total_versions -}}
-                    {{ $file_path := $trimed_URL | printf "%s/%s%s" "./dist/docs" $i }}
+                    {{ $file_path := $trimed_URL | printf "%s/%s%s" "/docs" $i }}
+
+                    {{ printf "%#v" $file_path }}
 
                     {{- if not (fileExists $file_path) -}}
                         {{ $.Scratch.Add "doesnot_exist_ver" $i }}
