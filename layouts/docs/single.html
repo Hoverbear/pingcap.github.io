@@ -41,11 +41,36 @@
 
                 {{ printf "%#v" .File.Path }}
 
+                {{ $temp := .File.Path }}
+
                 {{- range $idx, $i := $total_versions -}}
                     {{ $file_path := $trimed_URL | printf "%s/%s%s" "/docs" $i }}
 
-                    {{- if not (fileExists $file_path) -}}
+                    {{ $temp_path := replaceRE "(v\\d+\\.\\d+|dev)" $i $temp  | printf "%s%s" "/"}}
 
+                    {{ printf "%#v" $file_path}}
+
+                    {{ printf "%#v" $temp_path}}
+
+                    {{- if fileExists "/docs/v3.0/how-to/deploy/hardware-recommendations.md" -}}
+                        hello1
+                    {{- else -}}
+                        else hello 1
+                    {{- end -}}
+
+                    {{- if fileExists "./dist/docs/v3.0/how-to/deploy/hardware-recommendations.md" -}}
+                        hello2
+                    {{- else -}}
+                        else hello 2
+                    {{- end -}}
+
+                    {{- if fileExists "docs/v3.0/how-to/deploy/hardware-recommendations.md" -}}
+                        hello3
+                    {{- else -}}
+                        else hello 3
+                    {{- end -}}
+
+                    {{- if not (fileExists $temp_path) -}}
                         {{ $.Scratch.Add "doesnot_exist_ver" $i }}
                     {{- end -}}
                 {{- end -}}
