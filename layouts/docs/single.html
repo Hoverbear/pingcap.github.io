@@ -35,6 +35,7 @@
         <div class="archive">
             <div class="content markdown-body">
                 {{ $prefix := $current_version | printf "%s%s" "/docs"  }}
+
                 {{ $trimed_URL := strings.TrimPrefix $prefix .URL }}
 
                 {{ $.Scratch.Set "doesnot_exist_ver" (slice "") }}
@@ -44,9 +45,9 @@
                 {{ $temp := .File.Path }}
 
                 {{- range $idx, $i := $total_versions -}}
-                    {{ $file_path := $trimed_URL | printf "%s/%s%s" "/docs" $i }}
+                    {{ $file_path := $trimed_URL | printf "%s/%s%s" "./dist/docs" $i }}
 
-                    {{ $temp_path := replaceRE "(v\\d+\\.\\d+|dev)" $i $temp  | printf "%s%s" "/"}}
+                    {{ $temp_path := replaceRE "(v\\d+\\.\\d+|dev)" $i $temp | printf "%s%s" "/"}}
 
                     {{ printf "%#v" $file_path}}
 
@@ -55,22 +56,29 @@
                     {{- if fileExists "/docs/v3.0/how-to/deploy/hardware-recommendations.md" -}}
                         hello1
                     {{- else -}}
-                        else hello 1
+                        no1 
                     {{- end -}}
 
                     {{- if fileExists "./dist/docs/v3.0/how-to/deploy/hardware-recommendations.md" -}}
                         hello2
                     {{- else -}}
-                        else hello 2
+                        no2 
                     {{- end -}}
 
                     {{- if fileExists "docs/v3.0/how-to/deploy/hardware-recommendations.md" -}}
                         hello3
                     {{- else -}}
-                        else hello 3
+                        no3
                     {{- end -}}
 
-                    {{- if not (fileExists $temp_path) -}}
+                    {{- if fileExists "./dist/docs//v3.0/how-to/deploy/hardware-recommendations" -}}
+                        hello4
+                    {{- else -}}
+                        no4
+                    {{- end -}}
+
+                    {{- if not (fileExists $file_path) -}}
+                        in fileExists
                         {{ $.Scratch.Add "doesnot_exist_ver" $i }}
                     {{- end -}}
                 {{- end -}}
