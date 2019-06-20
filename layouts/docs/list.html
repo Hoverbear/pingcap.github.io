@@ -24,7 +24,12 @@
 
         <div class="archive">
             <div class="content markdown-body">
-                {{ with .Site.GetPage "page" "docs/dev/overview.md" }}{{.Content}}{{ end }}
+                {{ with .Site.GetPage "page" "docs/dev/overview.md" }}
+                    {{- if .Params.i18n_link -}}
+                        {{$.Scratch.Set "data_i18_link" .Params.i18n_link }}
+                    {{- end -}}
+                    {{.Content}}
+                {{ end }}
             </div>
             <div class="article-toc"></div>
         </div>

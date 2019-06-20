@@ -20,7 +20,12 @@
         {{- partial "archives/sticky-tree.html" (dict "tree" .Site.Data.docs_cn_toc "title" "文档") -}}
 
         <div class="archive">
-            <div class="content markdown-body"> {{- .Content -}} </div>
+            <div class="content markdown-body"> 
+                {{- if .Params.i18n_link -}}
+                    {{$.Scratch.Set "data_i18_link" .Params.i18n_link }}
+                {{- end -}}
+                {{- .Content -}} 
+            </div>
             <div class="article-toc"></div>
             {{- partial "archives/git-info.html" (dict "repo" "docs-cn" "isCn" "true" "global" .) -}}
         </div>
