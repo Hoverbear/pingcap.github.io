@@ -63,7 +63,7 @@ copy_images_from_media_to_dist() {
 }
 
 # mv all content in media to dist/images
-copy_images_from_media_to_dist docs
+# copy_images_from_media_to_dist docs
 copy_images_from_media_to_dist docs-cn
 # copy_images_from_media_to_dist blog-cn
 # copy_images_from_media_to_dist blog
