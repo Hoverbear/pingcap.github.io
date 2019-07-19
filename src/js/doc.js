@@ -42,14 +42,11 @@ function processStickyTree() {
   })
 
   var pathname = window.location.pathname
-  console.log('pathname: ', pathname)
   var banned_path_arr = [
     '/docs-cn/v3.0/reference/tools/data-migration/overview/',
-    '/docs-cn/v2.0/reference/tools/data-migration/overview/',
+    '/docs-cn/v2.1/reference/tools/data-migration/overview/',
     '/docs-cn/dev/reference/tools/data-migration/overview/',
   ]
-
-  console.log('test;', banned_path_arr.includes(pathname))
 
   if ($('#list_page').length == 0 && !banned_path_arr.includes(pathname)) {
     $('.sticky-sidebar').animate(
