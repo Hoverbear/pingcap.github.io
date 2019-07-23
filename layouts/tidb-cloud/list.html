@@ -1,3 +1,7 @@
+{{- define "title" -}}
+    TiDB Cloud
+{{- end -}}
+
 {{- define "headTpl" -}}
     {{$.Scratch.Set "nav_active" "cloud"}}
     {{- partial "head/preload-css" (dict "href" "/css/tidb-cloud.css") -}}
