@@ -135,7 +135,7 @@ section[class^="about-"] {
   width: 100%;
 
   .banner-img {
-    width: 700px;
+    max-width: 700px;
     padding: calc(~'@{headerHeight} + 2.3rem') 0 3rem;
     margin: 0 auto;
 
@@ -793,7 +793,7 @@ section[class^="about-"] {
 
   .banner-bg {
     .banner-img {
-      width: 1000px;
+      max-width: 1000px;
     }
   }
 }
@@ -814,8 +814,14 @@ section[class^="about-"] {
     }
   }
 
-  .about-culture .details .item {
-    width: 45%;
+  .about-culture .details {
+    .item {
+      width: 45%;
+    }
+
+    .image-wrap .icon {
+      height: 60px;
+    }
   }
 
   .about-contact {
@@ -990,5 +996,9 @@ section[class^="about-"] {
         }
       }
     }
+  }
+
+  .about-contact .info .col-1 .office-info .office-name {
+    width: 29%;
   }
 }
