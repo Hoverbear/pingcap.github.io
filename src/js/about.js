@@ -127,8 +127,8 @@ const particlesConfig = {
 }
 
 function calcOfficePosition() {
-  var mapW = $('.map').width()
-  var mapH = $('.map').height()
+  var mapW = $('.pc-map').width()
+  var mapH = $('.pc-map').height()
 
   $('.m-silicon').css('left', 0.16 * mapW)
   $('.m-silicon').css('top', 0.37 * mapH)
@@ -174,7 +174,7 @@ $(document).ready(function() {
       console.log('callback - particles.js config loaded')
     })
 
-  calcOfficePosition()
+  $('.pc-map').on('load', calcOfficePosition())
 
   $('.m-office').hover(function(){
     $(this).addClass('m-office-hovered')

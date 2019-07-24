@@ -94,6 +94,7 @@ section[class^="about-"] {
     margin-top: 3.5rem;
     position: relative;
     z-index: 1;
+    box-shadow: 0 0 8px #487ECB;
 
     .arrow {
       visibility: hidden;
@@ -114,7 +115,7 @@ section[class^="about-"] {
 
     &:hover {
       background: #172D72;
-      box-shadow: 0 0 8px #487ECB;
+      box-shadow: none;
 
       .arrow {
         visibility: visible;
@@ -134,7 +135,7 @@ section[class^="about-"] {
   width: 100%;
 
   .banner-img {
-    max-width: 1124px;
+    max-width: 700px;
     padding: calc(~'@{headerHeight} + 2.3rem') 0 3rem;
     margin: 0 auto;
 
@@ -366,7 +367,7 @@ section[class^="about-"] {
 
     .image-wrap {
       .icon {
-        height: 48px;
+        height: 100px;
         vertical-align: middle;
       }
 
@@ -392,10 +393,10 @@ section[class^="about-"] {
     width: 100%;
     line-height: 1.7;
     position: relative;
-    justify-content: space-between;
+    justify-content: space-around;
 
     .col-1 {
-      width: 60%;
+      width: 55%;
       text-align: left;
       position: relative;
 
@@ -478,9 +479,10 @@ section[class^="about-"] {
   }
 }
 
-.map,
+.pc-map,
 .mobile-map {
   width: 100%;
+  margin: 2rem;
   position: relative;
 
   img {
@@ -497,7 +499,7 @@ section[class^="about-"] {
 
     button {
       position: absolute;
-      width: 80px;
+      width: 88px;
       background: #3355ff;
       border: none;
       color: white;
@@ -513,18 +515,18 @@ section[class^="about-"] {
   }
 
   .m-office-hovered {
-    background: #E30C34;
+    // background: #E30C34;
 
     button {
       transform: scale(1.2);
-      background: #E30C34;
+      // background: #E30C34;
       box-shadow: 1px 1px 10px #BFBFBF;
     }
 
-    .line {
-      border-color: #E30C34;
-      animation: stretchLine 0.5s ease-in-out alternate;
-    }
+    // .line {
+    //   border-color: #E30C34;
+    //   animation: stretchLine 0.5s ease-in-out alternate;
+    // }
   }
 
   .m-silicon {
@@ -788,6 +790,12 @@ section[class^="about-"] {
       height: 1350px;
     }
   }
+
+  .banner-bg {
+    .banner-img {
+      max-width: 1000px;
+    }
+  }
 }
 
 @media (max-width: 600px) {
@@ -806,8 +814,14 @@ section[class^="about-"] {
     }
   }
 
-  .about-culture .details .item {
-    width: 45%;
+  .about-culture .details {
+    .item {
+      width: 45%;
+    }
+
+    .image-wrap .icon {
+      height: 60px;
+    }
   }
 
   .about-contact {
@@ -842,7 +856,7 @@ section[class^="about-"] {
       }
     }
 
-    .map {
+    .pc-map {
       display: none;
     }
 
@@ -982,5 +996,9 @@ section[class^="about-"] {
         }
       }
     }
+  }
+
+  .about-contact .info .col-1 .office-info .office-name {
+    width: 29%;
   }
 }
